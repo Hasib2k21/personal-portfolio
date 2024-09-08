@@ -53,6 +53,24 @@
     hsl(45, 100%, 72%), 
     hsl(35, 100%, 68%)
   );
+  --text-gradient-purple: linear-gradient(
+  to right, 
+  hsl(265, 90%, 60%), 
+  hsl(290, 80%, 70%)
+);
+--text-gradient-yellow-orange: linear-gradient(
+  to right, 
+  hsl(45, 100%, 72%),   /* Yellow */
+  hsl(30, 100%, 64%)    /* Orange */
+);
+--text-gradient-yellow-green: linear-gradient(
+  to right, 
+  hsl(45, 100%, 72%),   /* Yellow */
+  hsl(41, 98%, 21%),    /* Light Green */
+  hsl(59, 98%, 21%)   /* Light Green */
+);
+
+
 
   /* solid */
 
@@ -833,7 +851,9 @@ main {
 /**
  * skills 
  */
-
+.skill{
+  margin-bottom: 20px;
+}
 .skills-title { margin-bottom: 20px; }
 
 .skills-list { padding: 20px; }
@@ -862,10 +882,12 @@ main {
 }
 
 .skill-progress-fill {
-  background: var(--text-gradient-yellow);
+  background: var(--text-gradient-yellow-green);
   height: 100%;
   border-radius: inherit;
 }
+
+
 
 
 
