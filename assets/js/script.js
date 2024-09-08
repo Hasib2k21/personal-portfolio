@@ -115,24 +115,41 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 
 
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
+  const form = document.querySelector("#contact-form");
+  const formInputs = document.querySelectorAll("[data-form-input]");
+  const formBtn = document.querySelector("[data-form-btn]");
 
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
-
+  // Enable submit button when form is valid
+  formInputs.forEach(input => {
+    input.addEventListener("input", function () {
+      if (form.checkValidity()) {
+        formBtn.removeAttribute("disabled");
+      } else {
+        formBtn.setAttribute("disabled", "");
+      }
+    });
   });
-}
+
+  // Handle form submission
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent the form from reloading the page
+
+    // Send email using EmailJS
+    emailjs.send('service_denxbw4', 'template_4wjr6eg', {
+      from_name: form.fullname.value,
+      from_email: form.email.value,
+      message: form.message.value
+    }).then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+      alert("Message sent successfully!");
+      form.reset();  // Clear the form
+      formBtn.setAttribute("disabled", "");  // Disable button again
+    }, function(error) {
+      console.log('FAILED...', error);
+      alert("Failed to send message.");
+    });
+  });
+
 
 
 
